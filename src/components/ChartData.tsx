@@ -92,9 +92,23 @@ function ChartData() {
                     type="text"
                     value={value}
                     onInput={(event) => {
+                      const _chartDataX = [ ...chartDataX ];
+                      _chartDataX[index] = event.currentTarget.value;
+                      setChartDataX(_chartDataX);
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === 'Tab') {
+                        event.currentTarget.blur();
+                      }
+                    }}
+                    onBlur={(event) => {
                       const _dataX = [ ...dataX ];
                       _dataX[index] = event.currentTarget.value;
                       setDataX(_dataX);
+
+                      const _chartDataX = [ ...chartDataX ];
+                      _chartDataX[index] = event.currentTarget.value;
+                      setChartDataX(_chartDataX);
                     }}
                   />
               </SortableItem>
