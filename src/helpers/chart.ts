@@ -38,14 +38,14 @@ const formatDateTimeDay = (dateTime = new Date()) => {
   }).format(new Date(dateTime));
 };
 
-const getChartYMax = (data: any) => {
-  if (!data || data.length === 0) return 0;
+const getChartYMax = (dataY: any) => {
+  if (!dataY || dataY.length === 0) return 0;
 
-  let max = +data[0].y;
+  let max = +dataY[0];
   let i = 0;
-  while (i < data.length - 1) {
-    const a = +data[i].y;
-    const b = +data[i + 1].y;
+  while (i < dataY.length - 1) {
+    const a = +dataY[i];
+    const b = +dataY[i + 1];
     if (a < b) {
       max = b;
     }

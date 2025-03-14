@@ -30,8 +30,10 @@ function ChartData() {
     setDataY,
   } = useChartContext();
 
-  const [chartDataX, setChartDataX] = useState<(number|string)[]>(['Category A', 'Category B', 'Category C']);
-  const [chartDataY, setChartDataY] = useState<(number|string)[]>([10, 20, 30]);
+  const [chartLabelX, setChartLabelX] = useState('Groups');
+  const [chartLabelY, setChartLabelY] = useState(['Day 1', 'Day 2', 'Day 3']);
+  const [chartDataX, setChartDataX] = useState<(number|string)[]>(['Group A', 'Group B', 'Group C']);
+  const [chartDataY, setChartDataY] = useState<(number[])>([10, 20, 30, 40, 50, 60, 70, 80, 90]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -92,7 +94,7 @@ function ChartData() {
                 const header: string = lines[0].replace('\r', '');
 
                 const xValues: string[] = [];
-                const yValues: string[] = [];
+                const yValues: number[] = [];
 
                 let i = 1;
                 while (i < lines.length) {
@@ -106,7 +108,7 @@ function ChartData() {
                   }
 
                   if (isNumeric(yValue)) {
-                    yValues.push(yValue);
+                    yValues.push(+yValue);
                   }
 
                   i++;
@@ -240,7 +242,7 @@ function ChartData() {
                       value={value}
                       onInput={(event) => {
                         const _chartDataY = [ ...chartDataY ];
-                        _chartDataY[index] = event.currentTarget.value;
+                        _chartDataY[index] = +event.currentTarget.value;
                         setChartDataY(_chartDataY);
                       }}
                       onKeyDown={(event) => {
@@ -258,11 +260,11 @@ function ChartData() {
                           }
 
                           const _dataY = [ ...dataY ];
-                          _dataY[index] = _value;
+                          _dataY[index] = +_value;
                           setDataY(_dataY);
 
                           const _chartDataY = [ ...chartDataY ];
-                          _chartDataY[index] = _value;
+                          _chartDataY[index] = +_value;
                           setChartDataY(_chartDataY);
                         } else {
                           const _chartDataY = [ ...chartDataY ];

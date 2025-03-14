@@ -19,28 +19,48 @@ import { getChartYMax } from '@/helpers/chart';
 
 function BarChart({ syncId, barColor }: any) {
   const {
+    labelX,
+    labelY,
     dataX,
     dataY,
     color,
   } = useChartContext();
 
   const [data, setData] = useState<{
-    x: number|string,
-    y: number|string,
+    [key: string]: number|string,
   }[]>([]);
-  const [yMax, setYMax] = useState('auto');
+  const [yMax, setYMax] = useState<number|string>('auto');
 
   useEffect(() => {
-    const _data = dataX.map((x, index) => {
-      return {
-        x,
-        y: dataY[index]
-      };
-    });
+    const result: {
+      [key:string]: string|number,
+    }[] = [];
 
-    setData(_data);
+    let i = 0;
+    while (i < dataX.length) {
 
-    const max: any = getChartYMax(_data);
+      const x = dataX[i];
+      const value = {
+        [labelX]: x,
+      }
+
+      let j = i*labelY.length;
+      let k = 0;
+      const limit = j + labelY.length;
+      while (j < limit) {
+        value[labelY[k]] = dataY[j];
+        k++;
+        j++;
+      }
+
+      result.push(value);
+
+      i++;
+    }
+
+    setData(result);
+
+    const max: number = getChartYMax(dataY);
     setYMax(max);
   }, [dataX, dataY]);
 
@@ -103,7 +123,7 @@ function BarChart({ syncId, barColor }: any) {
           fillOpacity="0.25"
         />
         <XAxis
-          dataKey="x"
+          dataKey={labelX}
           // stroke="white"
           axisLine={{ stroke: barColor }}
           // label={{ value: 'Month', position: 'bottom', offset: 0, fill: 'white' }}
@@ -123,15 +143,18 @@ function BarChart({ syncId, barColor }: any) {
           content={renderLegend}
         /> */}
         <Tooltip cursor={false} content={renderTooltip} />
-        <Bar
-          dataKey="y"
-          fill={barColor}
-          // label={{ fill: 'white', fontSize: 12 }}
-          activeBar={{ stroke: 'white', strokeWidth: 1 }}
-          // radius={[4, 4, 0, 0]}
-          // barSize={20}
-          // background={{ fill: 'yellow' }}
-        />
+        {labelY.map((y, index) => (
+          <Bar
+            key={index}
+            dataKey={y}
+            fill={barColor}
+            // label={{ fill: 'white', fontSize: 12 }}
+            activeBar={{ stroke: 'blue', strokeWidth: 1 }}
+            // radius={[4, 4, 0, 0]}
+            // barSize={20}
+            // background={{ fill: 'yellow' }}
+          />
+        ))}
       </RechartsBarChart>
     </ResponsiveContainer>
   );
