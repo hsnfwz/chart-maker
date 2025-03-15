@@ -84,13 +84,15 @@ function BarChart({ syncId, barColor }: any) {
   function renderTooltip(props: any) {
     const { active, payload, label } = props;
 
-    // console.log(active, payload, label);
-
     if (active && payload && payload.length) {
       return (
-        <div className="border border-slate-700 bg-slate-800 rounded text-white p-2">
-          <p>{label}</p>
-          <p style={{ color: barColor }}>{payload[0].value}</p>
+        <div className="border border-slate-700 bg-slate-800 rounded text-white p-2 flex flex-col gap-4">
+          <h1 className="font-bold">{label}</h1>
+          <div className="flex flex-col gap-2">
+            {payload.map((item: any, index: number) => (
+              <p key={index} style={{ color: barColor }}>{item.name}: {item.value}</p>
+            ))}
+          </div>
         </div>
       );
     }
@@ -129,7 +131,6 @@ function BarChart({ syncId, barColor }: any) {
           // label={{ value: 'Month', position: 'bottom', offset: 0, fill: 'white' }}
         />
         <YAxis
-          // dataKey="y"
           // stroke="white"
           axisLine={{ stroke: barColor }}
           type="number"
