@@ -151,11 +151,11 @@ function AreaChart({ syncId, barColor }: any) {
           <Area
             key={index}
             dataKey={y}
-            stroke={index === 0 ? 'oklch(0.828 0.111 230.318)' : index === 1 ? 'oklch(0.685 0.169 237.323)' : index === 2 ? 'oklch(0.5 0.134 242.749)' : ''}
+            stroke={index === 0 ? '#74d4ff' : index === 1 ? '#00a6f4' : index === 2 ? '#0069a8' : ''}
             label={{ fill: 'white', fontSize: 12 }}
             // activeDot={{ stroke: 'oklch(0.685 0.169 237.323)', strokeWidth: 1 }}
             fillOpacity={0.8}
-            fill={index === 0 ? 'oklch(0.828 0.111 230.318)' : index === 1 ? 'oklch(0.685 0.169 237.323)' : index === 2 ? 'oklch(0.5 0.134 242.749)' : ''}
+            fill={index === 0 ? '#74d4ff' : index === 1 ? '#00a6f4' : index === 2 ? '#0069a8' : ''}
             // radius={[4, 4, 0, 0]}
             // barSize={20}
             // background={{ fill: 'yellow' }}
