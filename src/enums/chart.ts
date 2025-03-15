@@ -10,8 +10,6 @@ enum Chart {
 enum Export {
   PNG = 0,
   JPEG,
-  SVG,
-  PDF,
 }
 
 export {

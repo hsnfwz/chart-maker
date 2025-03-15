@@ -27,20 +27,6 @@ function ChartExport() {
       anchor.setAttribute('download', 'chart.jpeg');
       anchor.click();
       anchor.remove();
-    } else if (option === Export.SVG) {
-      const url = '';
-      const anchor = document.createElement('a');
-      anchor.setAttribute('href', url);
-      anchor.setAttribute('download', 'chart.svg');
-      anchor.click();
-      anchor.remove();
-    } else if (option === Export.PDF) {
-      const url = '';
-      const anchor = document.createElement('a');
-      anchor.setAttribute('href', url);
-      anchor.setAttribute('download', 'chart.pdf');
-      anchor.click();
-      anchor.remove();
     }
   }
 
@@ -48,8 +34,6 @@ function ChartExport() {
     <>
       <button type="button" onClick={async () => await exportChart(Export.PNG)} className="bg-neutral-200 rounded p-2 cursor-pointer hover:bg-black hover:text-white">PNG</button>
       <button type="button" onClick={async () => await exportChart(Export.JPEG)} className="bg-neutral-200 rounded p-2 cursor-pointer hover:bg-black hover:text-white">JPEG</button>
-      {/* <button type="button" onClick={async () => await exportChart(Export.SVG)} className="bg-neutral-200 rounded p-2 cursor-pointer hover:bg-black hover:text-white">SVG</button>
-      <button type="button" onClick={async () => await exportChart(Export.PDF)} className="bg-neutral-200 rounded p-2 cursor-pointer hover:bg-black hover:text-white">PDF</button> */}
     </>
   );
 }

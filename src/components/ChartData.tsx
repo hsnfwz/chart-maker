@@ -36,10 +36,9 @@ function ChartData() {
     setDataY,
   } = useChartContext();
 
-    // TODO: fix y-label sort adding new fields when moving - also fix animation when moving y labels
+  // TODO: fix y-label sort adding new fields when moving - also fix animation when moving y labels
   // TODO: fix file upload not adding new y labels
-  // TODO: export as svg and pdf
-  // TODO: allow user to resize the chart since how it appears is how it will export
+  // TODO: allow user to resize the chart since how it appears is how it will export (or just set the style before exporting)
 
   const [chartLabelX, setChartLabelX] = useState<string>('X-Axis');
   const [chartLabelY, setChartLabelY] = useState<string[]>(['Y1', 'Y2', 'Y3']);

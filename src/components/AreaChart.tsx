@@ -1,13 +1,13 @@
 'use client';
 
 import {
-  BarChart as RechartsBarChart,
+  AreaChart as RechartsAreaChart,
   CartesianGrid,
   XAxis,
   YAxis,
   Tooltip,
   Legend,
-  Bar,
+  Area,
   ResponsiveContainer,
 } from 'recharts';
 
@@ -17,7 +17,7 @@ import { useChartContext } from "@/hooks/context";
 
 import { getChartYMax } from '@/helpers/chart';
 
-function BarChart({ syncId, barColor }: any) {
+function AreaChart({ syncId, barColor }: any) {
   const {
     chartRef,
     rerenderChart,
@@ -104,7 +104,7 @@ function BarChart({ syncId, barColor }: any) {
 
   return (
     <ResponsiveContainer ref={chartRef}>
-      <RechartsBarChart
+      <RechartsAreaChart
         
         data={data}
         // margin={{
@@ -148,20 +148,22 @@ function BarChart({ syncId, barColor }: any) {
         />
         {/* <Tooltip cursor={false} content={renderTooltip} /> */}
         {labelY.map((y, index) => (
-          <Bar
+          <Area
             key={index}
             dataKey={y}
-            fill={index === 0 ? 'oklch(0.828 0.111 230.318)' : index === 1 ? 'oklch(0.685 0.169 237.323)' : index === 2 ? 'oklch(0.5 0.134 242.749)' : ''}
+            stroke={index === 0 ? 'oklch(0.828 0.111 230.318)' : index === 1 ? 'oklch(0.685 0.169 237.323)' : index === 2 ? 'oklch(0.5 0.134 242.749)' : ''}
             label={{ fill: 'white', fontSize: 12 }}
-            // activeBar={{ stroke: 'blue', strokeWidth: 1 }}
+            // activeDot={{ stroke: 'oklch(0.685 0.169 237.323)', strokeWidth: 1 }}
+            fillOpacity={0.8}
+            fill={index === 0 ? 'oklch(0.828 0.111 230.318)' : index === 1 ? 'oklch(0.685 0.169 237.323)' : index === 2 ? 'oklch(0.5 0.134 242.749)' : ''}
             // radius={[4, 4, 0, 0]}
             // barSize={20}
             // background={{ fill: 'yellow' }}
           />
         ))}
-      </RechartsBarChart>
+      </RechartsAreaChart>
     </ResponsiveContainer>
   );
 }
 
-export default BarChart;
+export default AreaChart;
