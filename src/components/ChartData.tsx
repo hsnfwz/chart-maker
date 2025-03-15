@@ -36,6 +36,11 @@ function ChartData() {
     setDataY,
   } = useChartContext();
 
+    // TODO: fix y-label sort adding new fields when moving - also fix animation when moving y labels
+  // TODO: fix file upload not adding new y labels
+  // TODO: export as svg and pdf
+  // TODO: allow user to resize the chart since how it appears is how it will export
+
   const [chartLabelX, setChartLabelX] = useState<string>('X-Axis');
   const [chartLabelY, setChartLabelY] = useState<string[]>(['Y1', 'Y2', 'Y3']);
   const [chartDataX, setChartDataX] = useState<(number|string)[]>(['X1', 'X2', 'X3']);
@@ -98,8 +103,6 @@ function ChartData() {
 
     setRerenderChart(!rerenderChart);
   }
-
-  // TODO: fix y-label sort adding new fields when moving - also fix animation when moving y labels
 
   function handleDragEndLabelY(event: any) {
     const { active, over } = event;

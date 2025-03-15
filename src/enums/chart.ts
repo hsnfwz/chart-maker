@@ -7,6 +7,14 @@ enum Chart {
   Scatter,
 };
 
+enum Export {
+  PNG = 0,
+  JPEG,
+  SVG,
+  PDF,
+}
+
 export {
-  Chart
+  Chart,
+  Export,
 };

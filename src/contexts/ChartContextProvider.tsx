@@ -1,9 +1,10 @@
 'use client';
 
 import { Chart } from '@/enums/chart';
-import { createContext, useState, Dispatch, SetStateAction } from 'react';
+import { createContext, useState, Dispatch, SetStateAction , useRef , RefObject } from 'react';
 
 const ChartContext = createContext<{
+  chartRef: any,
   rerenderChart: boolean,
   labelX: string,
   labelY: string[],
@@ -25,6 +26,7 @@ function ChartContextProvider({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const chartRef = useRef<any>(null);
   const [rerenderChart, setRerenderChart] = useState<boolean>(false);
 
   const [labelX, setLabelX] = useState('X-Axis');
@@ -37,6 +39,7 @@ function ChartContextProvider({
 
   return (
     <ChartContext.Provider value={{
+      chartRef,
       rerenderChart,
       labelX,
       labelY,

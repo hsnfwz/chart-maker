@@ -19,6 +19,7 @@ import { getChartYMax } from '@/helpers/chart';
 
 function BarChart({ syncId, barColor }: any) {
   const {
+    chartRef,
     rerenderChart,
     labelX,
     labelY,
@@ -102,8 +103,9 @@ function BarChart({ syncId, barColor }: any) {
   }
 
   return (
-    <ResponsiveContainer>
+    <ResponsiveContainer ref={chartRef}>
       <RechartsBarChart
+        
         data={data}
         // margin={{
         //   top: 0,
