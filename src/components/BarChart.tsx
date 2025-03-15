@@ -6,7 +6,7 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  // Legend,
+  Legend,
   Bar,
   ResponsiveContainer,
 } from 'recharts';
@@ -19,6 +19,7 @@ import { getChartYMax } from '@/helpers/chart';
 
 function BarChart({ syncId, barColor }: any) {
   const {
+    rerenderChart,
     labelX,
     labelY,
     dataX,
@@ -62,24 +63,24 @@ function BarChart({ syncId, barColor }: any) {
 
     const max: number = getChartYMax(dataY);
     setYMax(max);
-  }, [dataX, dataY]);
+  }, [rerenderChart]);
 
-  // function renderLegend(props) {
-  //   const { payload } = props;
+  function renderLegend(props: any) {
+    const { payload } = props;
 
-  //   // console.log(payload)
+    // console.log(payload)
 
-  //   return (
-  //     <ul className="flex justify-center items-center gap-4 p-2">
-  //       {payload.map((entry, index) => (
-  //         <li key={`item-${index}`} className="flex justify-center items-center gap-2">
-  //           <span className={`w-[16px] h-[16px] rounded`} style={{ backgroundColor: `${entry.color}` }} ></span>
-  //           <span className="text-white capitalize">{entry.value}</span>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+    return (
+      <ul className="flex justify-center items-center gap-4 p-2">
+        {payload.map((entry: any, index: number) => (
+          <li key={`item-${index}`} className="flex justify-center items-center gap-2">
+            <span className={`w-[16px] h-[16px] rounded`} style={{ backgroundColor: `${entry.color}` }} ></span>
+            <span className="capitalize">{entry.value}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   function renderTooltip(props: any) {
     const { active, payload, label } = props;
@@ -138,18 +139,18 @@ function BarChart({ syncId, barColor }: any) {
           // allowDataOverflow={false}
           // label={{ value: 'Amount', angle: -90, position: 'left', offset: 0, fill: 'white' }}
         />
-        {/* <Legend
+        <Legend
           verticalAlign="top"
           align="center"
           content={renderLegend}
-        /> */}
-        <Tooltip cursor={false} content={renderTooltip} />
+        />
+        {/* <Tooltip cursor={false} content={renderTooltip} /> */}
         {labelY.map((y, index) => (
           <Bar
             key={index}
             dataKey={y}
-            fill={barColor}
-            // label={{ fill: 'white', fontSize: 12 }}
+            fill={index === 0 ? '#000' : index === 1 ? 'blue' : index === 2 ? 'red' : ''}
+            label={{ fill: 'white', fontSize: 12 }}
             activeBar={{ stroke: 'blue', strokeWidth: 1 }}
             // radius={[4, 4, 0, 0]}
             // barSize={20}
