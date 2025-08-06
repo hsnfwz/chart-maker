@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chart Maker",
-  description: "Create custom charts",
+  title: "QuickChart",
+  description: "Create quick charts and save as PNG or JPG",
 };
 
 export default function RootLayout({

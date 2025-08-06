@@ -340,7 +340,7 @@ function ChartData() {
           }}>Add</button>
         </div>
       </DndContext>
-      <DndContext
+      {/* <DndContext
         id="y-axis-label"
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -434,7 +434,7 @@ function ChartData() {
             setRerenderChart(!rerenderChart);
           }}>Add</button>
         </div>
-      </DndContext>
+      </DndContext> */}
       <DndContext
         id="y-axis-data"
         sensors={sensors}
@@ -443,7 +443,7 @@ function ChartData() {
         onDragEnd={handleDragEndDataY}
       >
         <div className="flex flex-col gap-2">
-          <h1 className="font-bold">Y-Axis Data</h1>
+          <h1 className="font-bold">Y-Axis</h1>
           <div className="flex flex-col gap-2">
             <SortableContext items={chartDataY.map((y, index) => `y-${index}`)} strategy={verticalListSortingStrategy}>
               {chartDataY.map((value, index) => (
